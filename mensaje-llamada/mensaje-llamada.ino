@@ -43,7 +43,7 @@ void setup(){
   delay(2000);
 
   Serial.println();
-  Serial.println("Control A7670G");
+  Serial.println("-- Control A7670G --");
   mostrarMenu();
 }
 
