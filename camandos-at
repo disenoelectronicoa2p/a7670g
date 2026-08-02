@@ -1,0 +1,231 @@
+
+COMANDO 1: Probar comunicación
+AT
+
+OK
+
+------------
+COMANDO 2: Información del módulo
+ATI
+
+Manufacturer: SIMCOM INCORPORATED
+Model: A7670G-LABE
+Revision: V1.11.2
+IMEI: 867284XXXXXXXXX
+
+------------
+COMANDO 3: IMEI
+AT+CGSN
+
+867284XXXXXXXXX
+OK
+
+------------
+COMANDO 4: Firmware
+AT+CGMR
+
++CGMR: A110B06A7670M7
+OK
+
+------------
+COMANDO 5: Estado de la SIM
+AT+CPIN?
+
++CPIN: READY
+OK
+
+------------
+COMANDO 6: Calidad de señal
+AT+CSQ
+
++CSQ: 22,99
+OK
+
+CSQ	     Calidad
+0-9	     Muy mala
+10-14	 Regular
+15-19	 Buena
+20-30	 Muy buena
+31	     Excelente
+
+------------
+COMANDO 7: Registro en la red
+AT+CEREG?
+
++CEREG: 0,1
+
+OK
+
+0,0 --> No registrado.
+0,1 --> Registrado.
+0,2 --> Buscando red.
+0,5 --> Registrado en roaming.
+
+------------
+COMANDO 8: Operador
+AT+COPS?
+
++COPS: 0,2,"732101",7
+OK
+
+Código	 Operador
+732101	  Claro
+732123	  Movistar
+732103	  TIGO
+
+------------
+COMANDO 9: Buscar operadores
+AT+COPS=?
+
++COPS: (2,"LaSeleNosLlama","LaSeleNosLl","732101",7),(1,"LaSeleNosLlama","LaSeleNosLl","732101",0),(1,"Movistar","Movistar","732123",7),(1,"TIGO","TIGO","732103",7),,(0,1,2,3,4),(0,1,2)
+
+OK
+
+------------
+COMANDO 10: Información LTE
+AT+CPSI?
+
++CPSI: LTE,Online,732-101,0x7579,201500674,461,EUTRAN-BAND28,9560,3,0,0,21,53,-4
+
+OK
+
+
+--------------------------------------------------
+ -- MENSAJES DE TEXTO --
+--------------------------------------------------
+
+Configurar modo texto para SMS
+AT+CMGF=1  
+
+------------
+Configurar notificación automática:
+
+SMS se guarda en memoria de la SIM o Memoria Interna del A7670G:
+AT+CNMI=2,1,0,0,0
+
+------------
+SMS llega automáticamente por el puerto serie:
+AT+CNMI=2,2,0,0,0
+
+------------
+Almacenamiento de mensajes:
+
+Saber que esta usando SIM o MEMORIA INTERNA:
+
+AT+CPMS?
++CPMS: "SM",0,20,"SM",0,20,"SM",0,20
+
+Ó
+
+AT+CPMS?
++CPMS: "ME",0,180,"ME",0,180,"ME",0,180
+
+--------------
+Configura la Memoria Interna (ME):
+AT+CPMS="ME","ME","ME"
+
++CPMS: 0,180,0,180,0,180
+OK
+
+--------------
+Configurar para usar SIM
+AT+CPMS="SM","SM","SM"
+
++CPMS: 0,20,0,20,0,20
+OK
+
+---------------------------------
+Tamaño del mensaje de 160 caracteres por SMS.
+---------------------------------
+
+------------
+Leer todos los mensajes
+AT+CMGL="ALL"
+
+------------
+Leer un mensaje específico
+AT+CMGR=X
+
+Por Ejemplo:
+AT+CMGR=1
+
+------------
+Borrar un mensaje
+AT+CMGD=X
+
+Por Ejemplo:
+AT+CMGD=1
+
+------------
+Eliminar todos los mensajes
+AT+CMGD=1,4
+
+---------------
+Enviar mensaje
+AT+CMGS="3001234567"
+
+---------------
+Enviar mensaje
+0x1A  --> ctrl+z --> Valor en hexadecimal
+
+
+--------------------------------------------------
+ -- LLAMADAS --
+--------------------------------------------------
+
+Mostrar el número de quien llama (Caller ID)
+AT+CLIP=1
+
+--------------
+Desactivar identificación
+AT+CLIP=0
+
+--------------
+Hacer una llamada
+ATD3001234567;
+
+--------------
+Contestar una llamada
+ATA
+
+--------------
+Colgar una llamada
+ATH o
+
+Depende de AT+CVHU?
++CVHU: 1
+
+OK
+
+CVHU = Control Voice Hang Up (Control del colgado de llamadas de voz).
+
+---
+AT+CVHU=0
+
+Cuelga directamente:
+AT+CHUP
+
+--------------
+Guardar configuración
+Algunos parámetros pueden guardarse.
+
+AT&W
+
+--------------
+Restaurar configuración
+
+AT&F
+
+--------------
+Reinicio por software (recomendado)
+AT+CRESET
+
+-------------
+Reinicio completo (funcional)
+AT+CFUN=1,1
+
+------------
+Apagar el módulo
+AT+CPOF
+
+------------
