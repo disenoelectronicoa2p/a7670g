@@ -24,7 +24,7 @@ enum Estado{
 
 Estado estadoActual = ESPERA;
 
-const char numeroTelefono[] = "3207045369"; //Numero Movil
+const char numeroTelefono[] = "3001234567"; //Numero Movil
 const char codigo[] = "+57";                //Codigo pais
 
 // Texto del mensaje
